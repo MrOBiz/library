@@ -1,5 +1,7 @@
 const myLibrary = new Array();
 
+let tableBody = document.querySelector(".t-body");
+
 function Book(title, author, pages, read){
     if(!new.target){
         throw Error("Use new!")
@@ -30,5 +32,13 @@ addBookToLibrary("gamma", "delta", "90", "read");
 addBookToLibrary("theta", "epsilon", "52", "not read");
 
 function showBooks(){
-    
+    for(let book of myLibrary){
+        let row = tableBody.insertRow();
+        for(let j = 0; j < 5; j ++ ){
+            let cell = row.insertCell(j);
+            cell = book.title;
+        }
+    }
 }
+
+showBooks();
