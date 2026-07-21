@@ -1,8 +1,5 @@
 const myLibrary = new Array();
 
-/*const book1 = new Book("A", "Sis", "123", "not read");
-const book2 = new Book("B", "Bro", "321", "read"); */
-
 function Book(title, author, pages, read){
     if(!new.target){
         throw Error("Use new!")
@@ -29,7 +26,9 @@ function addBookToLibrary(title, author, pages, read){
 
 
 addBookToLibrary("alpha", "beta", "23", "not read");
+addBookToLibrary("gamma", "delta", "90", "read");
+addBookToLibrary("theta", "epsilon", "52", "not read");
 
-
-console.log(myLibrary[0].id);
-console.log(myLibrary);
+function showBooks(){
+    
+}
