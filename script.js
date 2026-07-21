@@ -23,14 +23,13 @@ function Book(title, author, pages, read){
 } 
 
 function addBookToLibrary(title, author, pages, read){
-    let book = new Book(title, author, pages, read);
+    const book = new Book(title, author, pages, read);
     myLibrary.push(book);
-    return book = new Book(title, author, pages, read);
 }
 
 
 addBookToLibrary("alpha", "beta", "23", "not read");
 
 
-console.log(book.id);
+console.log(myLibrary[0].id);
 console.log(myLibrary);
