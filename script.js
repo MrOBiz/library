@@ -1,9 +1,16 @@
 const myLibrary = [];
+const bookColumns = ["title", "author", "pages", "read", "id", "remove"];
+const removeBtnArray = new Array();
+
+
+const form = document.querySelector("form");
+const dialog = document.querySelector("#dialog-box");
 
 //Dummy entries
 addBookToLibrary("alpha", "beta", "23", "not read");
 addBookToLibrary("gamma", "delta", "90", "read");
 addBookToLibrary("theta", "epsilon", "52", "not read");
+ 
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -22,9 +29,6 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
-// Column order matches the table headers (skip methods like info)
-const bookColumns = ["title", "author", "pages", "read", "id"];
-
 function showBooks() {
     const tableBody = document.querySelector(".t-body");
     if (!tableBody) return;
@@ -37,17 +41,24 @@ function showBooks() {
 
         for (const prop of bookColumns) {
             const cell = document.createElement("td");
-            cell.innerText = book[prop]; // property, not a method; use bracket access
-            row.appendChild(cell);
-        }
+            if(prop === "remove"){
+                const removeBtn = document.createElement("button");
+                removeBtn.style.width = "70px";
+                removeBtn.style.height = "5px";
+                removeBtn.style.backgroundColor = "red"; 
+                removeBtnArray.push(removeBtn);
 
+                cell.insertAdjacentElement("afterbegin", removeBtn);
+                row.appendChild(cell);
+            }else{
+                cell.innerText = book[prop]; // property, not a method; use bracket access
+                row.appendChild(cell);
+            }
+        }
+        
         tableBody.appendChild(row);
     }
 }
-
-//const sub = document.querySelector("#submit-button");
-const form = document.querySelector("form");
-const dialog = document.querySelector("#dialog-box");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -60,5 +71,11 @@ form.addEventListener("submit", (e) => {
     showBooks();
     dialog.close();
 });
+
+for(btn of removeBtnArray){
+    btn.addEventListener("click", ()=>{
+
+});
+}
 
 showBooks();
