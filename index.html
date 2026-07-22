@@ -27,6 +27,22 @@
             </tr>
         </tfoot>
     </table>
-    <button type="button">NEW BOOK</button>
+    <button command="show-modal" commandfor="dialog-box">NEW BOOK</button>
+    <dialog id="dialog-box">
+        <form>
+            <label for="title">Book title:</label>
+            <input type="text" id="title" name="b-title">
+
+            <label for="author">Book author:</label>
+            <input type="text" id="author" name="b-author">
+
+            <label for="pages">Number of pages:</label>
+            <input type="text" id="pages" name="b-pages">
+
+            <label for="read">Read/not read:</label>
+            <input type="text" id="read" name="b-read">
+        </form>
+        <button command="close" commandfor="dialog-box">CONFIRM</button>
+    </dialog>
 </body>
 </html>
