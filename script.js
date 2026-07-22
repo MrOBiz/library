@@ -1,5 +1,10 @@
 const myLibrary = [];
 
+//Dummy entries
+addBookToLibrary("alpha", "beta", "23", "not read");
+addBookToLibrary("gamma", "delta", "90", "read");
+addBookToLibrary("theta", "epsilon", "52", "not read");
+
 function Book(title, author, pages, read) {
     if (!new.target) {
         throw Error("Use new!");
@@ -26,10 +31,6 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(book);
 }
 
-addBookToLibrary("alpha", "beta", "23", "not read");
-addBookToLibrary("gamma", "delta", "90", "read");
-addBookToLibrary("theta", "epsilon", "52", "not read");
-
 // Column order matches the table headers (skip methods like info)
 const bookColumns = ["title", "author", "pages", "read", "id"];
 
@@ -53,9 +54,20 @@ function showBooks() {
     }
 }
 
-let sub = document.querySelector("#submit-button");
-sub.addEventListener("click", () => {
-    
+//const sub = document.querySelector("#submit-button");
+const form = document.querySelector("form");
+const dialog = document.querySelector("#dialog-box");
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const bookData = Object.fromEntries(fd);
+
+    addBookToLibrary(bookData["b-title"], bookData["b-author"], 
+                    bookData["b-pages"], bookData["b-read"]); 
+
+    showBooks();
+    dialog.close();
 });
 
 showBooks();
