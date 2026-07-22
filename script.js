@@ -43,10 +43,14 @@ function showBooks() {
             const cell = document.createElement("td");
             if(prop === "remove"){
                 const removeBtn = document.createElement("button");
-                removeBtn.style.width = "70px";
+                removeBtn.style.width = "50px";
                 removeBtn.style.height = "5px";
-                removeBtn.style.backgroundColor = "red"; 
+                removeBtn.style.padding = "5px";
+                removeBtn.style.backgroundColor = "red";
                 removeBtnArray.push(removeBtn);
+
+                removeBtn.dataset.id = book.id;
+                console.log(removeBtn.dataset.id);
 
                 cell.insertAdjacentElement("afterbegin", removeBtn);
                 row.appendChild(cell);
@@ -72,10 +76,10 @@ form.addEventListener("submit", (e) => {
     dialog.close();
 });
 
-for(btn of removeBtnArray){
-    btn.addEventListener("click", ()=>{
-
+/* for(btn of removeBtnArray){
+    btn.addEventListener("click", (e) => {
+    const id = e.currentTarget.dataset.id;
 });
-}
+} */
 
 showBooks();
