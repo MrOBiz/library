@@ -53,4 +53,9 @@ function showBooks() {
     }
 }
 
+let sub = document.querySelector("#submit-button");
+sub.addEventListener("click", () => {
+    
+});
+
 showBooks();
