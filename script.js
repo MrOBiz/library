@@ -15,15 +15,6 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID();
-
-    this.info = function () {
-        console.log(
-            this.title + " by " + this.author + ", " + this.pages + ", " + this.read
-        );
-        return (
-            this.title + " by " + this.author + ", " + this.pages + ", " + this.read
-        );
-    };
 }
 
 function addBookToLibrary(title, author, pages, read) {
