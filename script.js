@@ -81,11 +81,8 @@ for(btn of removeBtnArray){
     btn.addEventListener("click", (e) => {
     const id = e.currentTarget.dataset.id;
 
-    for(book of myLibrary){
-        if(book.id == id){
-            myLibrary = myLibrary.splice(myLibrary.indexOf(book), 1);
-        }
-    }
+    myLibrary = myLibrary.filter( (book) => book.id != id);
+    console.log(myLibrary);
     
     showBooks()
     });
