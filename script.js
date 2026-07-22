@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 const bookColumns = ["title", "author", "pages", "read", "id", "remove"];
 const removeBtnArray = new Array();
 
@@ -50,7 +50,6 @@ function showBooks() {
                 removeBtnArray.push(removeBtn);
 
                 removeBtn.dataset.id = book.id;
-                console.log(removeBtn.dataset.id);
 
                 cell.insertAdjacentElement("afterbegin", removeBtn);
                 row.appendChild(cell);
@@ -76,10 +75,20 @@ form.addEventListener("submit", (e) => {
     dialog.close();
 });
 
-/* for(btn of removeBtnArray){
+showBooks();
+
+for(btn of removeBtnArray){
     btn.addEventListener("click", (e) => {
     const id = e.currentTarget.dataset.id;
-});
-} */
 
-showBooks();
+    for(book of myLibrary){
+        if(book.id == id){
+            myLibrary = myLibrary.splice(myLibrary.indexOf(book), 1);
+        }
+    }
+    
+    showBooks()
+    });
+}
+
+
