@@ -1,6 +1,7 @@
 let myLibrary = [];
 const bookColumns = ["title", "author", "pages", "read", "id", "remove"];
 const removeBtnArray = new Array();
+const readBtnArray = new Array();
 
 
 const form = document.querySelector("form");
@@ -53,6 +54,17 @@ function showBooks() {
 
                 cell.insertAdjacentElement("afterbegin", removeBtn);
                 row.appendChild(cell);
+            }else if(prop === "read"){
+                const toggleBtn = document.createElement("button");
+                toggleBtn.style.width = "50px";
+                toggleBtn.style.height = "5px";
+                toggleBtn.style.padding = "5px";
+                toggleBtn.style.backgroundColor = "blue";
+                readBtnArray.push(toggleBtn);
+    
+                cell.innerText = book[prop];
+                cell.insertAdjacentElement("beforeend", toggleBtn);
+                row.appendChild(cell);
             }else{
                 cell.innerText = book[prop]; // property, not a method; use bracket access
                 row.appendChild(cell);
@@ -82,7 +94,6 @@ for(btn of removeBtnArray){
     const id = e.currentTarget.dataset.id;
 
     myLibrary = myLibrary.filter( (book) => book.id != id);
-    console.log(myLibrary);
     
     showBooks()
     });
