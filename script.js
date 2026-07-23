@@ -52,10 +52,13 @@ function showBooks() {
             const cell = document.createElement("td");
             if(prop === "remove"){
                 const removeBtn = document.createElement("button");
+                removeBtn.classList.add("remove");
+
                 removeBtn.style.width = "50px";
                 removeBtn.style.height = "5px";
                 removeBtn.style.padding = "5px";
                 removeBtn.style.backgroundColor = "red";
+
                 removeBtnArray.push(removeBtn);
 
                 removeBtn.dataset.id = book.id;
@@ -64,10 +67,13 @@ function showBooks() {
                 row.appendChild(cell);
             }else if(prop === "read"){
                 const toggleBtn = document.createElement("button");
+                toggleBtn.classList.add("toggle");
+
                 toggleBtn.style.width = "50px";
                 toggleBtn.style.height = "5px";
                 toggleBtn.style.padding = "5px";
                 toggleBtn.style.backgroundColor = "blue";
+
                 readBtnArray.push(toggleBtn);
 
                 toggleBtn.dataset.id = book.id;
@@ -99,7 +105,7 @@ form.addEventListener("submit", (e) => {
 
 showBooks();
 
-for(btn of removeBtnArray){
+for(const btn of removeBtnArray){
     btn.addEventListener("click", (e) => {
     const id = e.currentTarget.dataset.id;
 
@@ -109,18 +115,13 @@ for(btn of removeBtnArray){
     });
 }
 
-for(btn of readBtnArray){
+for(const btn of readBtnArray){
     btn.addEventListener("click", (e) => {
-    console.log(e.currentTarget);
     const id = e.currentTarget.dataset.id;
 
-    console.log(id);
-
-    for(book of myLibrary){
+    for(const book of myLibrary){
         if(book.id === id){
-            console.log(book.read);
             book.changeReadStatus();
-            console.log(book.read);
         }
     }
     
@@ -128,3 +129,10 @@ for(btn of readBtnArray){
     });
 }
 
+function attachDeleteListeners(){
+    removeBtnArray = document.querySelectorAll(".remove");
+}
+
+function attachToggleListeners(){
+    readBtnArray = document.querySelectorAll(".toggle");
+}
