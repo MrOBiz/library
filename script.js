@@ -25,6 +25,14 @@ function Book(title, author, pages, read) {
     this.id = crypto.randomUUID();
 }
 
+Book.prototype.changeReadStatus = function(){
+    if(this.read === "read"){
+        this.read = "not read";
+    }else if(this.read === "not read"){
+        this.read = "read";
+    }
+};
+
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
@@ -61,8 +69,10 @@ function showBooks() {
                 toggleBtn.style.padding = "5px";
                 toggleBtn.style.backgroundColor = "blue";
                 readBtnArray.push(toggleBtn);
+
+                toggleBtn.dataset.id = book.id;
     
-                cell.innerText = book[prop];
+                cell.innerText = book.read;
                 cell.insertAdjacentElement("beforeend", toggleBtn);
                 row.appendChild(cell);
             }else{
@@ -99,4 +109,22 @@ for(btn of removeBtnArray){
     });
 }
 
+for(btn of readBtnArray){
+    btn.addEventListener("click", (e) => {
+    console.log(e.currentTarget);
+    const id = e.currentTarget.dataset.id;
+
+    console.log(id);
+
+    for(book of myLibrary){
+        if(book.id === id){
+            console.log(book.read);
+            book.changeReadStatus();
+            console.log(book.read);
+        }
+    }
+    
+    showBooks()
+    });
+}
 
