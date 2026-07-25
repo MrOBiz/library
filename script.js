@@ -1,7 +1,7 @@
 let myLibrary = [];
 const bookColumns = ["title", "author", "pages", "read", "id", "remove"];
-const removeBtnArray = new Array();
-const readBtnArray = new Array();
+let removeBtnArray = new Array();
+let readBtnArray = new Array();
 
 
 const form = document.querySelector("form");
@@ -59,10 +59,11 @@ function showBooks() {
                 removeBtn.style.padding = "5px";
                 removeBtn.style.backgroundColor = "red";
 
-                removeBtnArray.push(removeBtn);
+                //removeBtnArray.push(removeBtn);
 
                 removeBtn.dataset.id = book.id;
 
+                attachDeleteListeners();
                 cell.insertAdjacentElement("afterbegin", removeBtn);
                 row.appendChild(cell);
             }else if(prop === "read"){
@@ -74,10 +75,11 @@ function showBooks() {
                 toggleBtn.style.padding = "5px";
                 toggleBtn.style.backgroundColor = "blue";
 
-                readBtnArray.push(toggleBtn);
+                //readBtnArray.push(toggleBtn);
 
                 toggleBtn.dataset.id = book.id;
-    
+
+                attachToggleListeners();
                 cell.innerText = book.read;
                 cell.insertAdjacentElement("beforeend", toggleBtn);
                 row.appendChild(cell);
