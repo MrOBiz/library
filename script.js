@@ -1,8 +1,5 @@
 let myLibrary = [];
 const bookColumns = ["title", "author", "pages", "read", "id", "remove"];
-let removeBtnArray = new Array();
-let readBtnArray = new Array();
-
 
 const form = document.querySelector("form");
 const dialog = document.querySelector("#dialog-box");
@@ -11,7 +8,7 @@ const dialog = document.querySelector("#dialog-box");
 addBookToLibrary("alpha", "beta", "23", "not read");
 addBookToLibrary("gamma", "delta", "90", "read");
 addBookToLibrary("theta", "epsilon", "52", "not read");
- 
+
 
 function Book(title, author, pages, read) {
     if (!new.target) {
@@ -59,11 +56,15 @@ function showBooks() {
                 removeBtn.style.padding = "5px";
                 removeBtn.style.backgroundColor = "red";
 
-                //removeBtnArray.push(removeBtn);
-
                 removeBtn.dataset.id = book.id;
 
-                attachDeleteListeners();
+                // Attach listener on the new button (runs every time showBooks rebuilds the table)
+                removeBtn.addEventListener("click", (e) => {
+                    const id = e.currentTarget.dataset.id;
+                    myLibrary = myLibrary.filter((book) => book.id != id);
+                    showBooks();
+                });
+
                 cell.insertAdjacentElement("afterbegin", removeBtn);
                 row.appendChild(cell);
             }else if(prop === "read"){
@@ -75,11 +76,19 @@ function showBooks() {
                 toggleBtn.style.padding = "5px";
                 toggleBtn.style.backgroundColor = "blue";
 
-                //readBtnArray.push(toggleBtn);
-
                 toggleBtn.dataset.id = book.id;
 
-                attachToggleListeners();
+                // Attach listener on the new button (runs every time showBooks rebuilds the table)
+                toggleBtn.addEventListener("click", (e) => {
+                    const id = e.currentTarget.dataset.id;
+                    for (const book of myLibrary) {
+                        if (book.id === id) {
+                            book.changeReadStatus();
+                        }
+                    }
+                    showBooks();
+                });
+
                 cell.innerText = book.read;
                 cell.insertAdjacentElement("beforeend", toggleBtn);
                 row.appendChild(cell);
@@ -106,35 +115,3 @@ form.addEventListener("submit", (e) => {
 });
 
 showBooks();
-
-for(const btn of removeBtnArray){
-    btn.addEventListener("click", (e) => {
-    const id = e.currentTarget.dataset.id;
-
-    myLibrary = myLibrary.filter( (book) => book.id != id);
-    
-    showBooks()
-    });
-}
-
-for(const btn of readBtnArray){
-    btn.addEventListener("click", (e) => {
-    const id = e.currentTarget.dataset.id;
-
-    for(const book of myLibrary){
-        if(book.id === id){
-            book.changeReadStatus();
-        }
-    }
-    
-    showBooks()
-    });
-}
-
-function attachDeleteListeners(){
-    removeBtnArray = document.querySelectorAll(".remove");
-}
-
-function attachToggleListeners(){
-    readBtnArray = document.querySelectorAll(".toggle");
-}
