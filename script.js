@@ -58,7 +58,7 @@ function showBooks() {
 
                 removeBtn.dataset.id = book.id;
 
-                // Attach listener on the new button (runs every time showBooks rebuilds the table)
+                // Attach listener on the new button 
                 removeBtn.addEventListener("click", (e) => {
                     const id = e.currentTarget.dataset.id;
                     myLibrary = myLibrary.filter((book) => book.id != id);
@@ -78,7 +78,7 @@ function showBooks() {
 
                 toggleBtn.dataset.id = book.id;
 
-                // Attach listener on the new button (runs every time showBooks rebuilds the table)
+                // Attach listener on the new button 
                 toggleBtn.addEventListener("click", (e) => {
                     const id = e.currentTarget.dataset.id;
                     for (const book of myLibrary) {
