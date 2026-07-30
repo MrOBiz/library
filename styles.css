@@ -2,6 +2,10 @@
     font-size: 1rem;
 }
 
+legend{
+    color: red;
+}
+
 table{
     border: 5px solid aqua;
 }
