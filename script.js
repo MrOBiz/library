@@ -46,7 +46,7 @@ class Book {
     }
 }; */
 
-//Dummy entries
+//Dummy entries - was before Book obj, but function didn't work (obj not hoisted)
 addBookToLibrary("alpha", "beta", "23", "not read");
 addBookToLibrary("gamma", "delta", "90", "read");
 addBookToLibrary("theta", "epsilon", "52", "not read");
