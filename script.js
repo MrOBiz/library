@@ -1,19 +1,32 @@
 //ORIGINAL CODE HAD FACTORIES, THEN REFACTORED TO CLASSES
 
-
 let myLibrary = [];
 const bookColumns = ["title", "author", "pages", "read", "id", "remove"];
 
 const form = document.querySelector("form");
 const dialog = document.querySelector("#dialog-box");
 
-//Dummy entries
-addBookToLibrary("alpha", "beta", "23", "not read");
-addBookToLibrary("gamma", "delta", "90", "read");
-addBookToLibrary("theta", "epsilon", "52", "not read");
+class Book {
+
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
+
+    changeReadStatus() {
+        if(this.read === "read"){
+        this.read = "not read";
+        }else if(this.read === "not read"){
+            this.read = "read";
+        }
+    }
+}
 
 
-function Book(title, author, pages, read) {
+/* function Book(title, author, pages, read) {
     if (!new.target) {
         throw Error("Use new!");
     }
@@ -23,15 +36,20 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.id = crypto.randomUUID();
-}
+} */
 
-Book.prototype.changeReadStatus = function(){
+/* Book.prototype.changeReadStatus = function(){
     if(this.read === "read"){
         this.read = "not read";
     }else if(this.read === "not read"){
         this.read = "read";
     }
-};
+}; */
+
+//Dummy entries
+addBookToLibrary("alpha", "beta", "23", "not read");
+addBookToLibrary("gamma", "delta", "90", "read");
+addBookToLibrary("theta", "epsilon", "52", "not read");
 
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
