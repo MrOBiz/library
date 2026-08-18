@@ -1,3 +1,6 @@
+//ORIGINAL CODE HAD FACTORIES, THEN REFACTORED TO CLASSES
+
+
 let myLibrary = [];
 const bookColumns = ["title", "author", "pages", "read", "id", "remove"];
 
